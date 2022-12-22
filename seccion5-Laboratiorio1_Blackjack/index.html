@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iJCode - Blackjack</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css" />
+  </head>
+  <body>
+    <header class="bg-gray-900 py-4">
+      <h1 class="text-white text-center text-2xl md:text-4xl xl:text-5xl">
+        Blackjack
+      </h1>
+    </header>
+    <main class="container mx-auto px-4">
+      <div class="buttons flex justify-center gap-2 sm:gap-4 my-4">
+        <button id="btnNew" class="py-2 px-3 bg-green-500 hover:bg-green-700 rounded w-32 active:scale-90 transition-transform">Nuevo Juego</button>
+        <button id="btnRequest" class="py-2 px-3 bg-violet-500 hover:bg-violet-700 rounded w-32 active:scale-90 transition-transform">
+          Pedir carta
+        </button>
+        <button id="btnStop" class="py-2 px-3 bg-rose-500 hover:bg-rose-700 rounded w-28 sm:w-32 active:scale-90 transition-transform">
+          Detener
+        </button>
+      </div>
+      <div class="player-cards">
+        <h2 class="text-2xl sm:text-4xl mb-2">Jugador 1 - <span>0</span></h2>
+        <div class="cards flex" id="player-charts">
+        </div>
+      </div>
+      <div class="computer-cards mt-16">
+        <h2 class="text-2xl sm:text-4xl mb-2">Computadora - <span>0</span></h2>
+        <div class="cards flex" id="computer-charts">
+        </div>
+      </div>
+    </main>
+    <script src="./assets/js/underscore.js"></script>
+    <script src="./assets/js/juego.js"></script>
+  </body>
+</html>
