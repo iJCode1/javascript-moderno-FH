@@ -1,4 +1,4 @@
-(() => {
+const miModulo = (() => {
   "use strict";
 
   let deck = [];
@@ -154,4 +154,9 @@
   $btnNew.addEventListener("click", () => {
     inicializarJuego();
   });
+
+  // Exportar algo del módulo
+  return {
+    comenzarJuego: inicializarJuego,
+  };
 })();
