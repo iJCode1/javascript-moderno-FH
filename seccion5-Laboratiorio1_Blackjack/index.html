@@ -17,21 +17,21 @@
     <main class="container mx-auto px-4">
       <div class="buttons flex justify-center gap-2 sm:gap-4 my-4">
         <button id="btnNew" class="py-2 px-3 bg-green-500 hover:bg-green-700 rounded w-32 active:scale-90 transition-transform">Nuevo Juego</button>
-        <button id="btnRequest" class="py-2 px-3 bg-violet-500 hover:bg-violet-700 rounded w-32 active:scale-90 transition-transform">
+        <button disabled="disabled" id="btnRequest" class="py-2 px-3 bg-violet-500 hover:bg-violet-700 disabled:bg-violet-300 disabled:cursor-not-allowed rounded w-32 active:scale-90 transition-transform">
           Pedir carta
         </button>
-        <button id="btnStop" class="py-2 px-3 bg-rose-500 hover:bg-rose-700 rounded w-28 sm:w-32 active:scale-90 transition-transform">
+        <button disabled="disabled" id="btnStop" class="py-2 px-3 bg-rose-500 hover:bg-rose-700 disabled:bg-rose-300 disabled:cursor-not-allowed rounded w-28 sm:w-32 active:scale-90 transition-transform">
           Detener
         </button>
       </div>
       <div class="player-cards">
         <h2 class="text-2xl sm:text-4xl mb-2">Jugador 1 - <span>0</span></h2>
-        <div class="cards flex" id="player-charts">
+        <div class="cards flex divCards" id="player-charts">
         </div>
       </div>
       <div class="computer-cards mt-16">
         <h2 class="text-2xl sm:text-4xl mb-2">Computadora - <span>0</span></h2>
-        <div class="cards flex" id="computer-charts">
+        <div class="cards flex divCards" id="computer-charts">
         </div>
       </div>
     </main>
