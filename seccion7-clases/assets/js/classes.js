@@ -1,6 +1,24 @@
 // Creación de una clase
 
 class Estudiante {
+  // Propiedades estáticas
+  static _conteo = 0;
+
+  // set estáticos
+  static set setConteo(conteo){
+    Estudiante._conteo = conteo;
+  }
+
+  // get estáticos
+  static get getConteo(){
+    return Estudiante._conteo + " instancias"
+  }
+
+  // Métodos estáticos
+  static mensajeEstatico(){
+    console.log("Soy un mensaje estático");
+  }
+
   // Se declaran las propiedades de la clase
   nombre = "";
   apellido = "";
@@ -14,6 +32,8 @@ class Estudiante {
     this.nombre = nombre;
     this.apellido = apellido;
     this.edad = edad;
+
+    Estudiante._conteo ++;
   }
 
   // Métodos setters y getters
@@ -83,3 +103,15 @@ console.log(julieta); // Estudiante {nombre: 'JulietaEditada', apellido: 'Carmo
 pepe.setComidaFavorita = "Papas"
 console.log(pepe); // Estudiante {nombre: 'Pepe', apellido: 'Jimenez', edad: 18, comida: 'Papas'}
 
+// Accediendo a propiedades, set, get y métodos estáticos
+console.log(Estudiante._conteo); // 2
+Estudiante.setConteo = 9;
+console.log(Estudiante._conteo); // 9
+console.log(Estudiante.getConteo); // 9 instancias
+Estudiante.mensajeEstatico(); // Soy un mensaje estático
+/*
+  Se pueden crear propiedades estáticas nuevas (aunque esta forma no es la mejor)
+  Es más fácil leer el código si estás son definidas en la misma clase
+*/
+Estudiante._nota = 90;
+console.log(Estudiante._nota); // 90
