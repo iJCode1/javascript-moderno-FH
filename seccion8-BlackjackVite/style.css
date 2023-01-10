@@ -1,0 +1,21 @@
+:root{
+  --white: white;
+  --green: #2F4F30;
+}
+
+body{
+  background-color: var(--green);
+  color: var(--white);
+}
+
+.card-image{
+  max-inline-size: 11.25rem;
+  position: relative;
+  inset-inline-start: 6rem;
+  margin-inline-start: -6rem;
+}
+
+.player-cards,
+.computer-cards{
+  min-block-size: 21.25rem;
+}
