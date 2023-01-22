@@ -1,5 +1,6 @@
 import {
   addTodo,
+  deleteTodo,
   getCurrentFilter,
   getTodos,
   toggleTodo,
@@ -10,6 +11,7 @@ import { renderTodos } from "./usecases";
 const ElementsIDs = {
   todoList: ".todo-list",
   newTodoInput: "#new-todo-input",
+  destroy: ".destroy",
 };
 
 /**
@@ -33,6 +35,7 @@ export const App = (elementId) => {
   // Variables
   const $newTodoInput = document.querySelector(ElementsIDs.newTodoInput);
   const $todoList = document.querySelector(ElementsIDs.todoList);
+  const $destroy = document.querySelector(ElementsIDs.destroy);
 
   // Eventos
   $newTodoInput.addEventListener("keyup", (e) => {
@@ -49,6 +52,15 @@ export const App = (elementId) => {
     const elemento = e.target.closest("[data-id]");
 
     toggleTodo(elemento.getAttribute("data-id"));
+    displayTodos();
+  });
+
+  $todoList.addEventListener("click", (e) => {
+    if (e.target.className !== "destroy") return;
+    
+    const elemento = e.target.closest("[data-id]");
+
+    deleteTodo(elemento.getAttribute("data-id"));
     displayTodos();
   });
 };
