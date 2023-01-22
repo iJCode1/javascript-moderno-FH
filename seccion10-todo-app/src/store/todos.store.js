@@ -31,11 +31,11 @@ const loadStore = () => {
  */
 const getTodos = (filter = Filters.All) => {
   switch (filter) {
-    case filter === Filters.All:
+    case Filters.All:
       return [...store.todos];
-    case filter === Filters.Completed:
+    case Filters.Completed:
       return store.todos.filter((todo) => todo.completed);
-    case filter === Filters.Pending:
+    case Filters.Pending:
       return store.todos.filter((todo) => !todo.completed);
     default:
       throw new Error(`Option ${filter} is not valid`);
