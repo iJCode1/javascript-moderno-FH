@@ -1,4 +1,9 @@
-import { addTodo, getCurrentFilter, getTodos } from "../store/todos.store";
+import {
+  addTodo,
+  getCurrentFilter,
+  getTodos,
+  toggleTodo,
+} from "../store/todos.store";
 import html from "./app.html?raw"; // <-- ?raw: Sirve para importar el html
 import { renderTodos } from "./usecases";
 
@@ -25,8 +30,11 @@ export const App = (elementId) => {
     displayTodos();
   })();
 
+  // Variables
   const $newTodoInput = document.querySelector(ElementsIDs.newTodoInput);
+  const $todoList = document.querySelector(ElementsIDs.todoList);
 
+  // Eventos
   $newTodoInput.addEventListener("keyup", (e) => {
     if (e.key !== "Enter") return; // <-- Si no es Enter, no hagas nada
     if (!e.target.value.trim()) return; // <-- Si no hay texto, no hagas nada
@@ -35,5 +43,12 @@ export const App = (elementId) => {
     if (e.key === "Enter") addTodo(e.target.value);
     displayTodos();
     e.target.value = "";
+  });
+
+  $todoList.addEventListener("click", (e) => {
+    const elemento = e.target.closest("[data-id]");
+
+    toggleTodo(elemento.getAttribute("data-id"));
+    displayTodos();
   });
 };
