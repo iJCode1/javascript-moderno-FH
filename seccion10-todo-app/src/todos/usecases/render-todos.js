@@ -9,14 +9,13 @@ let element = "";
  * @param {Todo} todos es la lista de todos que se mostraran
  */
 export const renderTodos = (elementId, todos = []) => {
-
-  if(!element) element = elementId;
+  if (!element) element = document.querySelector(elementId);
 
   if (!element) throw new Error("elementId is required");
 
-  const $elemento = document.querySelector(element);
+  element.innerHTML = "";
 
   todos.forEach((todo) => {
-    $elemento.append(todoHtml(todo));
+    element.append(todoHtml(todo));
   });
 };
