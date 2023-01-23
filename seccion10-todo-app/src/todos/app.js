@@ -1,6 +1,7 @@
 import {
   addTodo,
   deleteTodo,
+  deleteCompleted,
   getCurrentFilter,
   getTodos,
   toggleTodo,
@@ -12,6 +13,7 @@ const ElementsIDs = {
   todoList: ".todo-list",
   newTodoInput: "#new-todo-input",
   destroy: ".destroy",
+  clearCompletedButton: ".clear-completed",
 };
 
 /**
@@ -36,6 +38,7 @@ export const App = (elementId) => {
   const $newTodoInput = document.querySelector(ElementsIDs.newTodoInput);
   const $todoList = document.querySelector(ElementsIDs.todoList);
   const $destroy = document.querySelector(ElementsIDs.destroy);
+  const $clearCompletedButton = document.querySelector(ElementsIDs.clearCompletedButton);
 
   // Eventos
   $newTodoInput.addEventListener("keyup", (e) => {
@@ -57,10 +60,15 @@ export const App = (elementId) => {
 
   $todoList.addEventListener("click", (e) => {
     if (e.target.className !== "destroy") return;
-    
+
     const elemento = e.target.closest("[data-id]");
 
     deleteTodo(elemento.getAttribute("data-id"));
+    displayTodos();
+  });
+
+  $clearCompletedButton.addEventListener("click", () => {
+    deleteCompleted();
     displayTodos();
   });
 };
