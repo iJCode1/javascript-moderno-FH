@@ -16,12 +16,22 @@ const store = {
 };
 
 const initStore = () => {
-  console.log(store);
+  loadStore();
   console.log("InitStore 💜");
 };
 
 const loadStore = () => {
-  throw new Error("Not implemented yet");
+  if (!localStorage.getItem("store")) return;
+
+  const { todos = [], filter = Filters.All } = JSON.parse(
+    localStorage.getItem("store")
+  );
+  store.todos = todos;
+  store.filter = filter;
+};
+
+const saveStoreToLocalStorage = () => {
+  localStorage.setItem("store", JSON.stringify(store));
 };
 
 /**
@@ -30,6 +40,7 @@ const loadStore = () => {
  * @returns retorna la lista de todos filtrados
  */
 const getTodos = (filter = Filters.All) => {
+  loadStore();
   switch (filter) {
     case Filters.All:
       return [...store.todos];
@@ -50,6 +61,7 @@ const addTodo = (todo) => {
   if (!todo) throw new Error("Todo is required");
 
   store.todos.push(new Todo(todo));
+  saveStoreToLocalStorage();
 };
 
 /**
@@ -60,10 +72,12 @@ const deleteTodo = (todoId) => {
   if (!todoId) throw new Error("todoId is required");
 
   store.todos = store.todos.filter((todo) => todo.id !== todoId);
+  saveStoreToLocalStorage();
 };
 
 const deleteCompleted = () => {
   store.todos = store.todos.filter((todo) => !todo.completed);
+  saveStoreToLocalStorage();
 };
 
 /**
@@ -80,6 +94,7 @@ const toggleTodo = (todoId) => {
 
     return todo;
   });
+  saveStoreToLocalStorage();
 };
 
 /**
@@ -88,6 +103,7 @@ const toggleTodo = (todoId) => {
  */
 const setFilter = (filter = Filters.All) => {
   store.filter = filter;
+  saveStoreToLocalStorage();
 };
 
 const getCurrentFilter = () => {
