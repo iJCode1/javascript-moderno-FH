@@ -1,9 +1,11 @@
 import {
   addTodo,
-  deleteTodo,
   deleteCompleted,
+  deleteTodo,
+  Filters,
   getCurrentFilter,
   getTodos,
+  setFilter,
   toggleTodo,
 } from "../store/todos.store";
 import html from "./app.html?raw"; // <-- ?raw: Sirve para importar el html
@@ -14,6 +16,7 @@ const ElementsIDs = {
   newTodoInput: "#new-todo-input",
   destroy: ".destroy",
   clearCompletedButton: ".clear-completed",
+  filters: ".filtro",
 };
 
 /**
@@ -38,7 +41,10 @@ export const App = (elementId) => {
   const $newTodoInput = document.querySelector(ElementsIDs.newTodoInput);
   const $todoList = document.querySelector(ElementsIDs.todoList);
   const $destroy = document.querySelector(ElementsIDs.destroy);
-  const $clearCompletedButton = document.querySelector(ElementsIDs.clearCompletedButton);
+  const $clearCompletedButton = document.querySelector(
+    ElementsIDs.clearCompletedButton
+  );
+  const $filters = document.querySelectorAll(ElementsIDs.filters);
 
   // Eventos
   $newTodoInput.addEventListener("keyup", (e) => {
@@ -70,5 +76,24 @@ export const App = (elementId) => {
   $clearCompletedButton.addEventListener("click", () => {
     deleteCompleted();
     displayTodos();
+  });
+
+  $filters.forEach((filtro) => {
+    filtro.addEventListener("click", () => {
+      $filters.forEach((filtro) => filtro.classList.remove("selected"));
+      filtro.className = "filtro selected";
+      switch (filtro.textContent) {
+        case "Todos":
+          setFilter(Filters.All);
+          break;
+        case "Pendientes":
+          setFilter(Filters.Pending);
+          break;
+        case "Completados":
+          setFilter(Filters.Completed);
+          break;
+      }
+      displayTodos();
+    });
   });
 };
