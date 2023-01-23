@@ -10,6 +10,7 @@ import {
 } from "../store/todos.store";
 import html from "./app.html?raw"; // <-- ?raw: Sirve para importar el html
 import { renderTodos } from "./usecases";
+import { renderPending } from "./usecases/render-pending";
 
 const ElementsIDs = {
   todoList: ".todo-list",
@@ -17,6 +18,7 @@ const ElementsIDs = {
   destroy: ".destroy",
   clearCompletedButton: ".clear-completed",
   filters: ".filtro",
+  pedindCountElement: "#pending-count",
 };
 
 /**
@@ -27,6 +29,11 @@ export const App = (elementId) => {
   const displayTodos = () => {
     const todos = getTodos(getCurrentFilter());
     renderTodos(ElementsIDs.todoList, todos);
+    updatePendingCount();
+  };
+
+  const updatePendingCount = () => {
+    renderPending(ElementsIDs.pedindCountElement);
   };
 
   (() => {
