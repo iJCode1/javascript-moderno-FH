@@ -1,7 +1,8 @@
-import './style.css'
-import javascriptLogo from './javascript.svg'
+import "./style.css";
+import javascriptLogo from "./javascript.svg";
+import { environmentsComponent } from "./src/concepts/01-environments";
 
-document.querySelector('#app').innerHTML = `
+document.querySelector("#app").innerHTML = `
   <div>
     <a href="https://vitejs.dev" target="_blank">
       <img src="/vite.svg" class="logo" alt="Vite logo" />
@@ -13,4 +14,6 @@ document.querySelector('#app').innerHTML = `
     <div class="card">
     </div>
   </div>
-`
+`;
+
+environmentsComponent(".card");
