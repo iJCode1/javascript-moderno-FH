@@ -10,15 +10,24 @@ export const callbackComponent = (elementId) => {
   if (!element) element = document.querySelector(elementId);
   if (!element) throw new Error("elementId is required");
 
-  findHero("5d86371fd55e2e2a30fe1ccb2", (error, hero) => {
-    // element.textContent = hero?.name || "undefined";
+  const hero1 = "5d86371fd55e2e2a30fe1ccb2";
+  const hero2 = "5d86371fd55e2e2a30fe1ccb";
+
+  findHero(hero1, (error, _hero1) => {
+    // element.textContent = _hero1?.name || "undefined";
 
     if (error) {
       element.textContent = error;
       return;
     }
-
-    element.textContent = hero.name;
+    // Callback Hell
+    findHero(hero2, (error, _hero2) => {
+      if (error) {
+        element.textContent = error;
+        return;
+      }
+      element.textContent = `${_hero1.name} / ${_hero2.name}`;
+    });
   });
 };
 
