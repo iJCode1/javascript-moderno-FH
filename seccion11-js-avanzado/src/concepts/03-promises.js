@@ -13,6 +13,15 @@ export const promiseComponent = (elementoId) => {
     elemento.textContent = hero.name;
   };
 
+  const renderTwoHeroes = (hero1, hero2) => {
+    if (!hero1 || !hero2) throw new Error("hero1 and hero2 are required");
+
+    elemento.innerHTML = `
+      <h2>Heroes:</h2>
+      <p>${hero1.name} / ${hero2.name}</p>
+    `;
+  };
+
   const renderError = (error) => {
     elemento.innerHTML = `
       <h2>Error:</h2>
@@ -22,11 +31,19 @@ export const promiseComponent = (elementoId) => {
 
   // consumiendo la promesa
   const hero1 = "5d86371fd55e2e2a30fe1ccb2";
+  const hero2 = "5d86371fd55e2e2a30fe1cc3";
 
   findHero(hero1)
-    .then((hero) => {
+    .then((_hero1) => {
       // then() recibe una función que se ejecuta cuando la promesa se resuelve
-      renderHero(hero);
+      // renderHero(_hero1);
+      findHero(hero2)
+        .then((_hero2) => {
+          renderTwoHeroes(_hero1, _hero2);
+        })
+        .catch((error) => {
+          renderError(error);
+        });
     })
     .catch((error) => {
       // catch() recibe una función que se ejecuta cuando la promesa se rechaza "fallo"
