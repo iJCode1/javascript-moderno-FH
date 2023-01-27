@@ -33,28 +33,36 @@ export const promiseComponent = (elementoId) => {
   const hero1 = "5d86371fd55e2e2a30fe1ccb2";
   const hero2 = "5d86371fd55e2e2a30fe1cc3";
 
-  findHero(hero1)
-    .then((_hero1) => {
-      // then() recibe una función que se ejecuta cuando la promesa se resuelve
-      // renderHero(_hero1);
-      findHero(hero2)
-        .then((_hero2) => {
-          renderTwoHeroes(_hero1, _hero2);
-        })
-        .catch((error) => {
-          renderError(error);
-        });
-    })
-    .catch((error) => {
-      // catch() recibe una función que se ejecuta cuando la promesa se rechaza "fallo"
-      renderError(error);
-    });
+  // Forma 1:
+  // findHero(hero1)
+  //   .then((_hero1) => {
+  //     // then() recibe una función que se ejecuta cuando la promesa se resuelve
+  //     // renderHero(_hero1);
+  //     findHero(hero2)
+  //       .then((_hero2) => {
+  //         renderTwoHeroes(_hero1, _hero2);
+  //       })
+  //       .catch((error) => {
+  //         renderError(error);
+  //       });
+  //   })
+  //   .catch((error) => {
+  //     // catch() recibe una función que se ejecuta cuando la promesa se rechaza "fallo"
+  //     renderError(error);
+  //   });
 
   // De forma más limpia puede quedar así:
   // findHero(hero1)
   // .then(renderHero)
   // .catch(renderError);
   // Esto sucede por que los callbacks de then y catch reciben la misma cantidad de argumentos que como los parametros del callback
+
+  // Forma 2: Promise All - Permite ejecutar más de 1 promesa siempre y cuando una no dependa de la otra
+  Promise.all([findHero(hero1), findHero(hero2)])
+    .then(([hero1, hero2]) => {
+      renderTwoHeroes(hero1, hero2);
+    })
+    .catch((error) => renderError(error));
 };
 
 /**
