@@ -1,4 +1,5 @@
 import "./style.css";
+import { asyncAwait2Component } from "./src/concepts/07-async-await2";
 import { asyncAwaitComponent } from "./src/concepts/06-async-await";
 import { asyncComponent } from "./src/concepts/05-async";
 import { callbackComponent } from "./src/concepts/02-callback";
@@ -26,4 +27,5 @@ document.querySelector("#app").innerHTML = `
 // promiseComponent(".card");
 // promiseRaceComponent(".card");
 // asyncComponent(".card");
-asyncAwaitComponent(".card");
+// asyncAwaitComponent(".card");
+asyncAwait2Component(".card");
