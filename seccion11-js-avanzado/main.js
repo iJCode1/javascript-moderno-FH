@@ -8,6 +8,7 @@ import { promiseComponent } from "./src/concepts/03-promises";
 import { promiseRaceComponent } from "./src/concepts/04-promise-race";
 import javascriptLogo from "./javascript.svg";
 import { forAwaitComponent } from "./src/concepts/08-for-await";
+import { generatorFunctionComponent } from "./src/concepts/09.generator-function";
 
 document.querySelector("#app").innerHTML = `
   <div>
@@ -30,4 +31,5 @@ document.querySelector("#app").innerHTML = `
 // asyncComponent(".card");
 // asyncAwaitComponent(".card");
 // asyncAwait2Component(".card");
-forAwaitComponent(".card");
+// forAwaitComponent(".card");
+generatorFunctionComponent(".card");
