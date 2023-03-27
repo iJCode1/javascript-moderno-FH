@@ -9,6 +9,7 @@ import { promiseRaceComponent } from "./src/concepts/04-promise-race";
 import javascriptLogo from "./javascript.svg";
 import { forAwaitComponent } from "./src/concepts/08-for-await";
 import { generatorFunctionComponent } from "./src/concepts/09.generator-function";
+import { generatorExerciseComponent } from "./src/concepts/10.generatorExercise";
 
 document.querySelector("#app").innerHTML = `
   <div>
@@ -32,4 +33,5 @@ document.querySelector("#app").innerHTML = `
 // asyncAwaitComponent(".card");
 // asyncAwait2Component(".card");
 // forAwaitComponent(".card");
-generatorFunctionComponent(".card");
+// generatorFunctionComponent(".card");
+generatorExerciseComponent(".card");
